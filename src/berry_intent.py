@@ -23,7 +23,6 @@ member_response = [
 
 class MemberRequest(BaseAlexaRequest):
 
-    @property
     def GetMember(self):
         reprompt_text = None
 
@@ -41,7 +40,6 @@ class MemberRequest(BaseAlexaRequest):
             )
         )
 
-    @property
     def SetMember(self):
         value = self.get_slot(name=SLOT_NAME)
         if value:
@@ -51,7 +49,7 @@ class MemberRequest(BaseAlexaRequest):
             speech_output = "Naw. You member?."
             reprompt_text = "Do you member?"
 
-        self.sessionAttributes[SLOT_NAME] = value
+        self.session_attributes[SLOT_NAME] = value
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
                 title='You Member',
@@ -60,7 +58,6 @@ class MemberRequest(BaseAlexaRequest):
             )
         )
 
-    @property
     def LaunchRequest(self):
         response_text = "I member. " \
                         "I love " +  \
@@ -73,5 +70,14 @@ class MemberRequest(BaseAlexaRequest):
                 title='Launch',
                 response_text=response_text,
                 reprompt_text=reprompt_text
+            )
+        )
+
+    def AMAZON_HelpIntent(self):
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='Help Intent',
+                response_text="You don't need help to member",
+                reprompt_text="Try to member."
             )
         )
