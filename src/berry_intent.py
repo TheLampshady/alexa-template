@@ -25,9 +25,8 @@ class MemberRequest(BaseAlexaRequest):
 
     def GetMember(self):
         reprompt_text = None
-
-        if self.get_slot(name=SLOT_NAME):
-            value = self.get_slot(name=SLOT_NAME)
+        value = self.session_attributes.get(SLOT_NAME)
+        if value:
             speech_output = random.choice(member_response).format(b=value)
         else:
             speech_output = "I member. Do you member?"
