@@ -17,7 +17,9 @@ member_response = [
     "I member {b}",
     "Oh yes, {b}. I member",
     "Oooo {b}, yes!",
-    "I love {b}! I member {b}"
+    "Hahaha {b}, yes, i member!",
+    "I love {b}! I member {b}",
+    "Of course i member {b}! I love {b}",
 ]
 
 
