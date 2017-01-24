@@ -1,4 +1,5 @@
 import logging
+import re
 
 
 class SingleLog(object):
@@ -76,7 +77,7 @@ class BaseAlexaRequest(object):
         output_speech = dict(type="SSML" if self.is_ssml else "PlainText")
         if self.is_ssml:
             wrap = "<speak>%s</speak>" % value
-            output_speech["ssml"] = wrap.replace(". ", self.BREAK).replace(", ", self.BREAK)
+            output_speech["ssml"] = re.sub('[\.!,?]', self.BREAK, wrap)
         else:
             output_speech["text"] = value
 
@@ -153,7 +154,7 @@ class BaseAlexaRequest(object):
             )
         )
 
-    def ErrorIntent(self, error):
+    def ErrorIntent(self):
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
                 title='Error',

@@ -1,7 +1,8 @@
-GetMember member
 GetMember you member
 GetMember do you member
 
-SetMember {berry}
 SetMember member {berry}
 SetMember you member {berry}
+
+TellMember I love {berry}
+TellMember I member {berry}

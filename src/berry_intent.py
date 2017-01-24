@@ -8,9 +8,10 @@ SLOT_NAME = 'berry'
 member_list = [
     "Star Wars",
     "Chew Bacca",
-    "Tawn Tawns",
-    "Ice Planet Hoth",
-    "Han Solo"
+    "Taun Tauns.",
+    "Ice Planet Hoth.",
+    "Han Solo.",
+    "E walks."
 ]
 
 member_response = [
@@ -29,9 +30,10 @@ class MemberRequest(BaseAlexaRequest):
         reprompt_text = None
         value = self.session_attributes.get(SLOT_NAME)
         if value:
-            speech_output = random.choice(member_response).format(b=value)
+            speech_output = random.choice(member_response).format(b=value) + \
+                            "Lets member later."
         else:
-            speech_output = "I member. Do you member?"
+            speech_output = "I do not member. What do you memeber?"
             reprompt_text = "Do you member?"
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
@@ -59,12 +61,23 @@ class MemberRequest(BaseAlexaRequest):
             )
         )
 
+    def TellMember(self):
+        response_text = "Do you Member, " +  \
+                        random.choice(member_list) + "? " \
+
+        return self.build_response(
+            speechletResponse=self.build_speechlet_response(
+                title='New Berry',
+                response_text=response_text,
+                reprompt_text="Tell me something you member."
+            )
+        )
+
     def LaunchRequest(self):
-        response_text = "I member. " \
-                        "I love " +  \
+        response_text = "I member. I love " +  \
                         random.choice(member_list) + ". " \
                         "Do you Member?"
-        reprompt_text = "Do you Member?"
+        reprompt_text = "Ask if I member."
 
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
@@ -78,7 +91,9 @@ class MemberRequest(BaseAlexaRequest):
         return self.build_response(
             speechletResponse=self.build_speechlet_response(
                 title='Help Intent',
-                response_text="You don't need help to member",
-                reprompt_text="Try to member."
+                response_text="Give member berries something to remember by saying. "
+                              "Say, member followed by your favorite thing, or say, "
+                              "I member to hear more.",
+                reprompt_text="Say, you member X wings"
             )
         )
