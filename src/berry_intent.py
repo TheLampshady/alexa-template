@@ -94,6 +94,9 @@ class MemberRequest(BaseAlexaRequest):
                 response_text="Give member berries something to remember by saying. "
                               "Say, member followed by your favorite thing, or say, "
                               "I member to hear more.",
-                reprompt_text="Say, you member X wings"
+                reprompt_text="Say, you member X wings",
+                card_text="Sample: \n"
+                          "'you member science.'\n"
+                          "'do you member."
             )
         )

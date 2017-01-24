@@ -77,19 +77,19 @@ class BaseAlexaRequest(object):
         output_speech = dict(type="SSML" if self.is_ssml else "PlainText")
         if self.is_ssml:
             wrap = "<speak>%s</speak>" % value
-            output_speech["ssml"] = re.sub('[\.!,?]', self.BREAK, wrap)
+            output_speech["ssml"] = re.sub('[\.!,?:]', self.BREAK, wrap)
         else:
             output_speech["text"] = value
 
         return output_speech
 
-    def build_speechlet_response(self, title, response_text, reprompt_text=None):
+    def build_speechlet_response(self, title, response_text, reprompt_text=None, card_text=None):
         output = dict(
             outputSpeech=self.format_output_speech(response_text),
             card=dict(
                 type='Simple',
                 title=title,
-                content=response_text,
+                content=card_text if card_text else response_text,
             ),
             shouldEndSession=True,
         )
